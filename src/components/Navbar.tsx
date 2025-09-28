@@ -28,7 +28,7 @@ const Navbar = () => {
             <Tooltip content="Home">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
                 <HomeIcon
-                  className={`w-[19px] h-[19px] max-sm:w-[15px] max-sm:h-[15px] text-black dark:text-white ${
+                  className={`w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white ${
                     pathname == "/"
                       ? "dark:!text-[#FFC83D] !text-[#cc9e2b]"
                       : ""
@@ -42,7 +42,7 @@ const Navbar = () => {
             <Tooltip content="Projects">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
                 <CodeIcon
-                  className={`w-[19px] h-[19px] max-sm:w-[15px] max-sm:h-[15px] text-black dark:text-white ${
+                  className={`w-[20px] h-[20px] max-sm:w-[18px] max-sm:h-[18px] text-black dark:text-white ${
                     pathname == "/projects"
                       ? "dark:!text-[#FFC83D] !text-[#cc9e2b]"
                       : ""
@@ -56,7 +56,7 @@ const Navbar = () => {
             <Tooltip content="Blog">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
                 <RowsIcon
-                  className={`w-[16px] h-[16px] max-sm:w-[13px] max-sm:h-[13px] text-black dark:text-white ${
+                  className={`w-[17px] h-[17px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white ${
                     pathname.startsWith("/blogs")
                       ? "dark:!text-[#FFC83D] !text-[#cc9e2b]"
                       : ""
@@ -75,7 +75,7 @@ const Navbar = () => {
           <Link href="#" target="_blank" underline="none">
             <Tooltip content="Resume">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <FileIcon className="w-[19px] h-[19px] max-sm:h-[15px] max-sm:w-[15px] text-black dark:text-white" />
+                <FileIcon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
               </div>
             </Tooltip>
           </Link>
@@ -83,7 +83,7 @@ const Navbar = () => {
           <Link href="https://github.com/Shivgit42" target="_blank">
             <Tooltip content="Github">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <GitHubLogoIcon className="w-[19px] h-[19px] max-sm:w-[15px] max-sm:h-[15px] text-black dark:text-white" />
+                <GitHubLogoIcon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
               </div>
             </Tooltip>
           </Link>
@@ -94,7 +94,7 @@ const Navbar = () => {
           >
             <Tooltip content="X">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <FaXTwitter className="w-[17px] h-[17px] max-sm:w-[15px] max-sm:h-[15px] text-black dark:text-white" />
+                <FaXTwitter className="w-[17px] h-[17px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
               </div>
             </Tooltip>
           </Link>
@@ -105,7 +105,7 @@ const Navbar = () => {
           >
             <Tooltip content="Linkedin">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <LinkedInLogoIcon className="w-[19px] h-[19px] max-sm:w-[15px] max-sm:h-[15px] text-black dark:text-white" />
+                <LinkedInLogoIcon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
               </div>
             </Tooltip>
           </Link>
@@ -123,9 +123,9 @@ const Navbar = () => {
             <div className="flex items-center">
               <button>
                 {isDarkMode ? (
-                  <MoonIcon className="w-[18px] h-[18px] max-sm:w-[14px] max-sm:h-[14px]" />
+                  <MoonIcon className="w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px]" />
                 ) : (
-                  <SunIcon className="w-5 h-5 max-sm:w-[15px] max-sm:h-[15px]" />
+                  <SunIcon className="w-5 h-5 max-sm:w-[16px] max-sm:h-[16px]" />
                 )}
               </button>
             </div>
