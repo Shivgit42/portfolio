@@ -47,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <Provider>
         <DarkModeProvider>
           <body className={`bg-white dark:bg-black`}>
