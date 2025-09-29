@@ -66,10 +66,10 @@ const Experience = () => {
                   >
                     {/* Job Title + Hover Indicator */}
                     <div className="flex items-center gap-1">
-                      <span className="text-lg !leading-4 mb-1 max-sm:text-base font-semibold">
+                      <span className="text-lg max-sm:text-base font-semibold leading-none">
                         {exp.job_title}
                       </span>
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center">
                         {isOpen ? (
                           <ChevronDown size={16} />
                         ) : (
