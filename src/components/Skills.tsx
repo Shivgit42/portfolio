@@ -31,6 +31,7 @@ const Skills = () => {
 export default Skills;
 
 const data: string[] = [
+  "C++",
   "JavaScript",
   "TypeScript",
   "Tailwind CSS",
@@ -40,7 +41,6 @@ const data: string[] = [
   "MongoDB",
   "Prisma",
   "PostgreSQL",
-  "Supabase",
   "Zustand",
   "Redux",
   "REST APIs",
