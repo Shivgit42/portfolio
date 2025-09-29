@@ -48,9 +48,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <Provider>
-        <DarkModeProvider>
-          <body className={`bg-white dark:bg-black`}>
+      <body className={`bg-white dark:bg-black`}>
+        <Provider>
+          <DarkModeProvider>
             <Toaster position="bottom-right" />
             <Theme className="dark:!bg-black">
               <Navbar />
@@ -58,9 +58,9 @@ export default function RootLayout({
               <Analytics />
               <ConditionalFooter />
             </Theme>
-          </body>
-        </DarkModeProvider>
-      </Provider>
+          </DarkModeProvider>
+        </Provider>
+      </body>
     </html>
   );
 }
