@@ -7,11 +7,11 @@ import {
   SunIcon,
   MoonIcon,
   FileIcon,
-  RowsIcon,
   LinkedInLogoIcon,
   CodeIcon,
   HomeIcon,
 } from "@radix-ui/react-icons";
+import { Notebook } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FaXTwitter } from "react-icons/fa6";
 import { useDarkMode } from "@/hooks/useDarkMode";
@@ -55,8 +55,8 @@ const Navbar = () => {
           <Link href="/blogs">
             <Tooltip content="Blog">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <RowsIcon
-                  className={`w-[17px] h-[17px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white ${
+                <Notebook
+                  className={`w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white ${
                     pathname.startsWith("/blogs")
                       ? "dark:!text-[#FFC83D] !text-[#cc9e2b]"
                       : ""
