@@ -20,9 +20,9 @@ export default function HeroSection() {
           <h1
             className={`mt-2 max-sm:mt-5 max-sm:px-3 !text-base max-sm:!text-sm text-center !font-normal !tracking-normal inter !leading-6 ${inter}`}
           >
-            i learnt by building, exploring, and breaking things until they
-            work. never stop learning, always pushing past comfort zones. i love
-            tech, football, and the peak engineering in cars, space & history.
+            i learn by building, exploring, and breaking things until they work
+            - anything that pushes the limits. i love tech, football, and the
+            peak engineering in cars and space, plus the history behind it all.
             <br />
             If you’re building something real and useful, let’s talk.
           </h1>
