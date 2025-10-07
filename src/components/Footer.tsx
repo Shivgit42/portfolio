@@ -8,7 +8,7 @@ const Footer = () => {
         <p className="text-sm max-sm:text-xs">
           Designed and Developed by{" "}
           <Link
-            href="https://x.com/intent/follow?screen_name=shivamranaaa"
+            href="https://x.com/intent/follow?screen_name=shivamrtwt"
             target="_blank"
           >
             {" "}

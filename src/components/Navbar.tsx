@@ -93,7 +93,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="https://x.com/intent/follow?screen_name=shivamranaaa"
+            href="https://x.com/intent/follow?screen_name=shivamrtwt"
             target="_blank"
           >
             <Tooltip content="X">
