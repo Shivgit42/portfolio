@@ -35,7 +35,7 @@ export const educationData: I_Education[] = [
     institute_link: "https://paruluniversity.ac.in",
     institute_logo: "/pu.jpeg",
     course_title: "Bachelor of Technology",
-    ending_date: "April 2023",
+    ending_date: "2019 - 2023",
     institute_name: "Parul Institute of Technology",
     cgpa: 8.2,
     description: "",
