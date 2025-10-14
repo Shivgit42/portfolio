@@ -77,7 +77,7 @@ const data: Project[] = [
     logo: "/flowdraw-logo.png",
     title: "FlowDraw",
     description:
-      "FlowDraw is a collaborative whiteboard for real-time creativity. Create and share canvases solo or with teammates, with smooth, low-latency interactions and persistent storage for your work.",
+      "FlowDraw is a collaborative drawing tool for real-time creativity. Create and share canvases solo or with teammates, with smooth, low-latency interactions and persistent storage for your work.",
     techStack: [
       "Turborepo",
       "Next.js",
@@ -86,7 +86,6 @@ const data: Project[] = [
       "NextAuth",
       "Socket.IO",
       "Express",
-      "Prisma",
       "PostgreSQL",
       "Zustand",
     ],
