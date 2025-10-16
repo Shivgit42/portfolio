@@ -97,7 +97,7 @@ const Contact = () => {
                 <Input
                   type="text"
                   className="w-full h-full border"
-                  placeholder="johndoe69@xyz.com"
+                  placeholder="mayank@abc.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
