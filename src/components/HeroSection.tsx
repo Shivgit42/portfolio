@@ -1,6 +1,6 @@
 import Avatar from "@/app/(home)/components/Avatar";
 import Link from "next/link";
-import { RainbowButton } from "./ui/rainbow-button";
+import { HeroButton } from "./ui/rainbow-button";
 import { Link as ScrollLink } from "react-scroll";
 import { bricolage_grotesque, inter } from "@/utils/fonts";
 
@@ -29,9 +29,9 @@ export default function HeroSection() {
         </div>
         <div className="mt-8 flex gap-4">
           <Link href="https://cal.com/shivamr" target="_blank">
-            <RainbowButton>Book a meet</RainbowButton>
+            <HeroButton>Book a meet</HeroButton>
           </Link>
-          <RainbowButton>
+          <HeroButton>
             <ScrollLink
               to="contact-section"
               activeClass="active"
@@ -41,7 +41,7 @@ export default function HeroSection() {
             >
               Get in touch
             </ScrollLink>
-          </RainbowButton>
+          </HeroButton>
         </div>
       </div>
     </div>
