@@ -8,8 +8,6 @@ const Education = dynamic(() => import("@/components/Education"), {
   ssr: false,
 });
 const Contact = dynamic(() => import("@/components/Contact"), { ssr: false });
-// const GitGraph = dynamic(() => import("./components/GitGraph"), { ssr: false });
-// const AddOnProjects = dynamic(() => import("@/components/AddOnProjects"), { ssr: false });
 const HomeRouteBlogs = dynamic(() => import("@/components/HomeRouteBlogs"), {
   ssr: false,
 });
@@ -20,10 +18,6 @@ export default function Home() {
     <div className="max-[350px]:overflow-hidden mt-8 max-sm:mt-0">
       <InitialLanding />
 
-      {/* <div className="w-full flex justify-center">
-        <AddOnProjects />
-      </div> */}
-
       <div className="w-full flex justify-center mt-8">
         <Experience />
       </div>
@@ -31,10 +25,6 @@ export default function Home() {
       <div className="w-full flex justify-center mt-8">
         <HomeRouteBlogs />
       </div>
-
-      {/* <div className="w-full flex justify-center">
-        <GitGraph />
-      </div> */}
 
       <div className="w-full flex justify-center mt-12">
         <Skills />
