@@ -59,7 +59,6 @@ const data: Project[] = [
     description:
       "Clario is a modern bookmark manager to save websites, notes, images, and more - organized with folders, tags, smart previews, fast search, and a powerful browser extension.",
     techStack: [
-      "Turborepo",
       "Next.js",
       "Vite",
       "React",
@@ -79,7 +78,6 @@ const data: Project[] = [
     description:
       "FlowDraw is a collaborative drawing tool for real-time creativity. Create and share canvases solo or with teammates, with smooth, low-latency interactions and persistent storage for your work.",
     techStack: [
-      "Turborepo",
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
