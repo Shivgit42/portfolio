@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Link, Separator, Tooltip } from "@radix-ui/themes";
+import { Separator, Tooltip } from "@radix-ui/themes";
 import {
   GitHubLogoIcon,
   SunIcon,
@@ -15,6 +15,7 @@ import { Notebook } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FaXTwitter } from "react-icons/fa6";
 import { useDarkMode } from "@/hooks/useDarkMode";
+import Link from "next/link";
 
 const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -24,7 +25,7 @@ const Navbar = () => {
     <nav className="w-full py-6 flex justify-center fixed top-0 z-50">
       <div className="rounded-full px-4 py-1 bg-white bg-opacity-10 backdrop-blur-lg border dark:border-white/20 flex items-center justify-center dark:shadow-none shadow w-fit max-w-full">
         <div className="flex items-center px-2 gap-6 sm:gap-5 max-sm:gap-4 transition-all">
-          <Link href="/" underline="none">
+          <Link href="/">
             <Tooltip content="Home">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
                 <HomeIcon
@@ -75,7 +76,6 @@ const Navbar = () => {
           <Link
             href="https://drive.google.com/file/d/180x3tdHHY4LIx0AbU-EHnRDn6riLHoXF/view?usp=sharing"
             target="_blank"
-            underline="none"
           >
             <Tooltip content="Resume">
               <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
