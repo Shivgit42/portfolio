@@ -13,12 +13,12 @@ const ProjectCard = (props: Project) => {
   const { isDarkMode } = useDarkMode();
   return (
     <MagicCard
-      className="cursor-pointer rounded-lg dark:shadow-2xl w-[45%] max-sm:w-full h-[310px] sm:h-[320px] md:h-[340px] lg:h-[360px] border-none !bg-transparent"
+      className="cursor-pointer rounded-lg dark:shadow-2xl w-[45%] max-sm:w-full h-[310px] border-none !bg-transparent"
       gradientColor={`${isDarkMode ? "#262626" : "rgba(197, 241, 241, 0.4)"}`}
     >
       <ShineBorder
-        className={`border h-full w-full relative rounded-lg flex flex-col justify-center items-start md:shadow-xl !bg-transparent !pointer-events-none`}
-        color={["#FF9933", "#FFFFFF", "#138808"]}
+        className={`border dark:border-white/20 border-black/20 h-full w-full relative rounded-lg flex flex-col justify-center items-start md:shadow-xl !bg-transparent !pointer-events-none`}
+        color={["#", "#", "#"]}
       >
         <div className="px-3">
           <Image src={props.logo} alt="project-logo" width={30} height={30} />
