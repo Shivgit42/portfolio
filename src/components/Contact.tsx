@@ -106,7 +106,7 @@ const Contact = () => {
               <div className="grid w-full gap-2">
                 <Label htmlFor="message">Your message</Label>
                 <Textarea
-                  placeholder="Type your message here."
+                  placeholder="Type your message here..."
                   id="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
