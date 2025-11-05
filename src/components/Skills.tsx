@@ -40,6 +40,7 @@ const data: string[] = [
   "Node.js",
   "Express",
   "MongoDB",
+  "Supabase",
   "Prisma",
   "PostgreSQL",
   "Zustand",
