@@ -50,7 +50,7 @@ const data: Project[] = [
       "Event Management System helps organize and manage events efficiently with timezone support, update history, and profile-based filtering.",
     techStack: [
       "React",
-      "Typescript",
+      "JavaScript",
       "Node",
       "Express",
       "Open AI",
