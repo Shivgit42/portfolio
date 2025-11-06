@@ -65,7 +65,7 @@ const data: Project[] = [
     title: "dacoid",
     description:
       "An android based mobile app version using JavaScript. This is fitness app where you can set your goals, track progress, schedule workout time, and much more.",
-    techStack: ["HTML"],
+    techStack: ["HTML", "CSS", "JavaScript"],
     link: "https://fitnessappbyshivam.netlify.app/",
     source: "https://github.com/Shivgit42/Figma-Dacoid-Assignment",
   },
