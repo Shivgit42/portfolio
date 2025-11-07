@@ -28,7 +28,7 @@ const data: Project[] = [
     logo: "/clario.png",
     title: "Clario",
     description:
-      "A Chrome extension to save and organize bookmarks instantly. You can add pages via a popup or floating button, group them into folders, tag for quick search, and access everything from your Clario dashboard.",
+      "A tool to save and organize bookmarks instantly. You can add pages via a popup or floating button, group them into folders, tag for quick search, and access everything from your Clario dashboard.",
     techStack: ["React", "Typescript", "Better Auth"],
     link: "https://chromewebstore.google.com/detail/clario/ponmpddnllnnbagafncnlofljhmnhdgd",
     source: "https://github.com/Shivgit42/Clario",
@@ -39,7 +39,6 @@ const data: Project[] = [
     description:
       "This Chrome extension humorously replaces every image on LinkedIn including profile pictures, post images, and banners with cat images. It’s a fun way to browse LinkedIn with a lighthearted twist.",
     techStack: ["Javascript"],
-    link: "#",
     source:
       "https://github.com/Shivgit42/Chrome-Extension-Linkedin-Profile-Changer",
   },
