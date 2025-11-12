@@ -7,7 +7,7 @@ const Avatar = () => {
       href="https://x.com/intent/follow?screen_name=shivamrtwt"
       target="_blank"
     >
-      <Picture src="/messi.jpeg" fallback="A" size="6" radius="full" />
+      <Picture src="/spidey.jpeg" fallback="A" size="8" radius="full" />
     </Link>
   );
 };

@@ -15,7 +15,7 @@ export default function BlogHeader({
 }: BlogHeaderProps) {
   return (
     <div className="mt-4 flex flex-wrap items-center gap-2">
-      <Avatar src="/messi.jpeg" fallback="A" radius="full" size="2" />
+      <Avatar src="/spidey.jpeg" fallback="A" radius="full" size="2" />
       <Link
         href="https://x.com/intent/follow?screen_name=shivamrtwt"
         underline="none"
