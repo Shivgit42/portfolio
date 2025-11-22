@@ -74,7 +74,7 @@ const Navbar = () => {
           />
 
           <Link
-            href="https://drive.google.com/file/d/180x3tdHHY4LIx0AbU-EHnRDn6riLHoXF/view?usp=sharing"
+            href="https://drive.google.com/file/d/1qNWGD8k3HSzgL2asnE0HeYQs_UyOGXJS/view?usp=sharing"
             target="_blank"
           >
             <Tooltip content="Resume">
