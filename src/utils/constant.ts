@@ -2,6 +2,14 @@ import { I_Education, I_Experience } from "@/types/project";
 
 export const experienceData: I_Experience[] = [
   {
+    company_link: "#",
+    company_logo: "/freelance-icon.webp",
+    company_name: "Freelance",
+    duration: "nov 25 - present",
+    job_title: "Full Stack Developer",
+    description: "building and shipping full stack apps.",
+  },
+  {
     company_link: "https://amruttamreikiyoga.com",
     company_logo: "/amruttam.svg",
     company_name: "Amruttam Research Institute for Reiki and Yoga Pvt. Ltd.",
