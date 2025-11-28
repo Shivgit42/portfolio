@@ -25,6 +25,24 @@ export default ClientProjects;
 
 const data: Project[] = [
   {
+    logo: "/url.png",
+    title: "Url-Fetch-LLM",
+    description:
+      "AI-powered semantic search platform for indexing and searching web content from URLs using vector embeddings, intelligent ranking, and relevant snippet extraction",
+    techStack: [
+      "React",
+      "Typescript",
+      "Node",
+      "Express",
+      "Bull",
+      "Redis",
+      "Pinecone",
+      "OpenRouter API",
+      "Postgres",
+    ],
+    source: "https://github.com/Shivgit42/url-fetch-llm",
+  },
+  {
     logo: "/bot.png",
     title: "Mailmind - AI Email Assistant",
     description:
