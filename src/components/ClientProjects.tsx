@@ -25,10 +25,10 @@ export default ClientProjects;
 
 const data: Project[] = [
   {
-    logo: "/url.png",
+    logo: "/url-llm.png",
     title: "Url-Fetch-LLM",
     description:
-      "AI-powered semantic search platform for indexing and searching web content from URLs using vector embeddings, intelligent ranking, and relevant snippet extraction",
+      "AI-powered semantic search platform for indexing and searching web content from URLs using vector embeddings, intelligent ranking, and relevant snippet extraction.",
     techStack: [
       "React",
       "Typescript",
