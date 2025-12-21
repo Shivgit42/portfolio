@@ -5,7 +5,7 @@ export const experienceData: I_Experience[] = [
     company_link: "#",
     company_logo: "/freelance-icon.webp",
     company_name: "Freelance",
-    duration: "nov 25 - present",
+    duration: "Nov 25 - present",
     job_title: "Full Stack Developer",
     description: "building and shipping full stack apps.",
   },
