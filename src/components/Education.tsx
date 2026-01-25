@@ -20,9 +20,8 @@ const Education = () => {
         <MagicCard
           key={idx}
           className="cursor-pointer dark:shadow-2xl mt-5 !bg-transparent border-none"
-          gradientColor={`${
-            isDarkMode ? "#262626" : "rgba(197, 241, 241, 0.4)"
-          }`}
+          gradientColor={`${isDarkMode ? "#262626" : "rgba(197, 241, 241, 0.4)"
+            }`}
         >
           <div className="flex w-full px-5 max-sm:px-0 max-sm:pr-1 py-3">
             <div className="w-24 flex items-center justify-center">
@@ -32,7 +31,7 @@ const Education = () => {
                   alt="institute-logo"
                   width={50}
                   height={50}
-                  className="rounded-full w-[50px] h-[50px]"
+                  className="rounded-md object-contain w-[50px] h-[50px]"
                 />
               </Link>
             </div>

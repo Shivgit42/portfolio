@@ -31,9 +31,8 @@ const Experience = () => {
           <MagicCard
             key={idx}
             className="cursor-pointer h-fit dark:shadow-2xl !bg-transparent border-none mb-3"
-            gradientColor={`${
-              isDarkMode ? "#262626" : "rgba(197, 241, 241, 0.4)"
-            }`}
+            gradientColor={`${isDarkMode ? "#262626" : "rgba(197, 241, 241, 0.4)"
+              }`}
           >
             <div
               className="flex w-full px-5 max-sm:px-0 max-sm:pr-1 py-3 group"
@@ -47,7 +46,7 @@ const Experience = () => {
                     alt="company-logo"
                     width={50}
                     height={50}
-                    className="rounded-full w-[50px] h-[50px]"
+                    className="rounded-md object-contain w-[50px] h-[50px]"
                   />
                 </Link>
               </div>
@@ -55,11 +54,10 @@ const Experience = () => {
               {/* Job Info */}
               <div className="w-full">
                 <div
-                  className={`${
-                    exp.job_title === "Freelance"
+                  className={`${exp.job_title === "Freelance"
                       ? "max-sm:ml-2 max-lg:ml-2"
                       : ""
-                  }`}
+                    }`}
                 >
                   <div
                     className={`flex w-[41vw] max-lg:w-full max-sm:w-full justify-between max-sm:items-center ${bricolage_grotesque}`}
@@ -96,9 +94,8 @@ const Experience = () => {
 
                 {/* Description with smooth expand/collapse */}
                 <div
-                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                    isOpen ? "max-h-40 mt-3 opacity-100" : "max-h-0 opacity-0"
-                  }`}
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-40 mt-3 opacity-100" : "max-h-0 opacity-0"
+                    }`}
                 >
                   <p className="text-sm max-sm:text-[11px]">
                     {exp.description}

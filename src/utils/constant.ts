@@ -2,6 +2,14 @@ import { I_Education, I_Experience } from "@/types/project";
 
 export const experienceData: I_Experience[] = [
   {
+    company_link: "http://deckit.ai",
+    company_logo: "/deckit.png",
+    company_name: "Deckit AI",
+    duration: "Nov 25 - present",
+    job_title: "Founding Engineer",
+    description: "Building the greatest AI presentation maker.",
+  },
+  {
     company_link: "#",
     company_logo: "/freelance-icon.webp",
     company_name: "Freelance",
