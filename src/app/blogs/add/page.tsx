@@ -1,5 +1,5 @@
 import React from 'react'
-import CreateBlog from './components/CreateBlog'
+import CreateBlog from '@/app/blogs/components/editor/CreateBlog'
 
 
 const page = () => {

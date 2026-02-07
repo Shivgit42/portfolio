@@ -1,7 +1,7 @@
 'use client'
 
 import axios from 'axios'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import BlogEditor from './BlogEditor'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -27,12 +27,28 @@ const blogSchema = z.object({
         })
         .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
             message: 'Only JPEG, PNG, and GIF files are allowed',
-        }),
+        })
+        .optional()
+        .nullable(),
 });
 
-const CreateBlog = () => {
-    const [title, setTitle] = useState<string>('');
-    const [content, setContent] = useState<string>('');
+interface BlogFormProps {
+    initialData?: {
+        id: string;
+        title: string;
+        content: string;
+        category: string;
+        image_public_id?: string;
+    };
+    isEdit?: boolean;
+}
+
+const BlogForm = ({ initialData, isEdit = false }: BlogFormProps) => {
+    const [title, setTitle] = useState<string>(initialData?.title || '');
+    const [content, setContent] = useState<string>(initialData?.content || '');
+    const [category, setCategory] = useState<'tech' | 'learnings'>(
+        (initialData?.category as 'tech' | 'learnings') || 'tech'
+    );
     const [file, setFile] = useState<File | null>(null);
     const [isPublishing, setIsPublishing] = useState<boolean>(false);
 
@@ -40,6 +56,14 @@ const CreateBlog = () => {
     const router = useRouter();
 
     const { status } = useSession();
+
+    useEffect(() => {
+        if (initialData) {
+            setTitle(initialData.title);
+            setContent(initialData.content);
+            setCategory(initialData.category as 'tech' | 'learnings');
+        }
+    }, [initialData]);
 
     if (status === "loading") {
         return <BlogFormSkeleton />
@@ -69,28 +93,42 @@ const CreateBlog = () => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
-        formData.append('file', file as File);
+        formData.append('category', category);
+        if (file) {
+            formData.append('file', file);
+        }
 
         try {
-            const response = await axios.post<ApiResponse>('/api/create-blog', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            let response;
+            if (isEdit && initialData?.id) {
+                response = await axios.patch<ApiResponse>(`/api/blogs/${initialData.id}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+            } else {
+                response = await axios.post<ApiResponse>('/api/create-blog', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+            }
 
             if (response.data.success) {
-                toast.success('Blog published successfully!');
-                setTitle('');
-                setContent('');
-                setFile(null);
-                if (fileInputRef.current) {
-                    fileInputRef.current.value = '';
+                toast.success(isEdit ? 'Blog updated successfully!' : 'Blog published successfully!');
+                if (!isEdit) {
+                    setTitle('');
+                    setContent('');
+                    setFile(null);
+                    if (fileInputRef.current) {
+                        fileInputRef.current.value = '';
+                    }
                 }
                 router.push('/blogs')
                 router.refresh();
             }
         } catch (error) {
-            toast.error(`Error while publishing blog: ${error}`);
+            toast.error(`Error while ${isEdit ? 'updating' : 'publishing'} blog: ${error}`);
         } finally {
             setIsPublishing(false);
         }
@@ -100,10 +138,32 @@ const CreateBlog = () => {
         <div className="overflow-hidden h-fit max-sm:px-4 max-sm:w-full relative">
             <div className="flex justify-end">
                 <Button onClick={handleSubmit} disabled={isPublishing}>
-                    {isPublishing ? 'Publishing...' : 'Publish'}
+                    {isPublishing ? (isEdit ? 'Updating...' : 'Publishing...') : (isEdit ? 'Update' : 'Publish')}
                 </Button>
             </div>
             <form className="w-full flex flex-col gap-8 mt-3" onSubmit={handleSubmit}>
+                <div className="flex gap-4 mb-2">
+                    <button
+                        type="button"
+                        onClick={() => setCategory('tech')}
+                        className={`px-6 py-2 rounded-full border transition-all duration-300 text-sm font-medium ${category === 'tech'
+                            ? 'bg-white text-black border-white'
+                            : 'bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-700 hover:text-zinc-400'
+                            }`}
+                    >
+                        Tech
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setCategory('learnings')}
+                        className={`px-6 py-2 rounded-full border transition-all duration-300 text-sm font-medium ${category === 'learnings'
+                            ? 'bg-white text-black border-white'
+                            : 'bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-700 hover:text-zinc-400'
+                            }`}
+                    >
+                        Learnings
+                    </button>
+                </div>
                 <Input
                     type="text"
                     value={title}
@@ -119,9 +179,9 @@ const CreateBlog = () => {
                     ref={fileInputRef}
                 />
             </form>
-            <BlogEditor setContent={setContent} />
+            <BlogEditor setContent={setContent} initialContent={content} />
         </div>
     );
 };
 
-export default CreateBlog;
+export default BlogForm;

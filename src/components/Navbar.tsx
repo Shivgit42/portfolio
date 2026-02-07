@@ -16,126 +16,170 @@ import { usePathname } from "next/navigation";
 import { FaXTwitter } from "react-icons/fa6";
 import { useDarkMode } from "@/hooks/useDarkMode";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const pathname = usePathname();
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+
+  const navItems = [
+    { href: "/", icon: HomeIcon, label: "Home", id: 0 },
+    { href: "/projects", icon: CodeIcon, label: "Projects", id: 1 },
+    { href: "/blogs", icon: Notebook, label: "Blog", id: 2, startsWith: true },
+  ];
+
+  const socialItems = [
+    { href: "https://drive.google.com/file/d/1qNWGD8k3HSzgL2asnE0HeYQs_UyOGXJS/view?usp=sharing", icon: FileIcon, label: "Resume", id: 3 },
+    { href: "https://github.com/Shivgit42", icon: GitHubLogoIcon, label: "Github", id: 4 },
+    { href: "https://x.com/intent/follow?screen_name=shivamrtwt", icon: FaXTwitter, label: "X", id: 5 },
+    { href: "https://www.linkedin.com/in/shivam-rana-a6427a1a2/", icon: LinkedInLogoIcon, label: "Linkedin", id: 6 },
+  ];
+
+  // Jelly spring configuration
+  const jellySpring = {
+    type: "spring",
+    stiffness: 600,
+    damping: 20,
+    mass: 1,
+  };
 
   return (
     <nav className="w-full py-6 flex justify-center fixed top-0 z-50">
-      <div className="rounded-full px-4 py-1 bg-white bg-opacity-10 backdrop-blur-lg border dark:border-white/20 flex items-center justify-center dark:shadow-none shadow w-fit max-w-full">
-        <div className="flex items-center px-2 gap-6 sm:gap-5 max-sm:gap-4 transition-all">
-          <Link href="/">
-            <Tooltip content="Home">
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <HomeIcon
-                  className={`w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white ${
-                    pathname == "/"
-                      ? "dark:!text-[#FFC83D] !text-[#cc9e2b]"
-                      : ""
-                  }`}
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="rounded-full px-2 py-1 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-black/5 dark:border-white/10 flex items-center justify-center dark:shadow-none shadow-lg w-fit max-w-full"
+        layout
+      >
+        <div className="flex items-center px-1 gap-1 sm:gap-1.5 transition-all relative">
+          {navItems.map((item) => (
+            <Link key={item.id} href={item.href} className="relative">
+              <Tooltip content={item.label}>
+                <motion.div
+                  className="py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                  onMouseEnter={() => setHoveredIndex(item.id)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  animate={{
+                    width: hoveredIndex === item.id ? "auto" : "auto",
+                    paddingLeft: hoveredIndex === item.id ? 22 : 12,
+                    paddingRight: hoveredIndex === item.id ? 22 : 12,
+                    backgroundColor: hoveredIndex === item.id ? "rgba(255, 255, 255, 0.05)" : "transparent"
+                  }}
+                  transition={jellySpring}
+                >
+                  <motion.div
+                    animate={{
+                      scale: hoveredIndex === item.id ? 1.2 : 1,
+                      y: hoveredIndex === item.id ? -1 : 0
+                    }}
+                    transition={jellySpring}
+                  >
+                    <item.icon
+                      className={`w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] transition-colors duration-300 ${(item.startsWith ? pathname.startsWith(item.href) : pathname === item.href)
+                          ? "text-[#cc9e2b] dark:text-[#FFC83D]"
+                          : "text-black dark:text-white"
+                        }`}
+                    />
+                  </motion.div>
+                </motion.div>
+              </Tooltip>
+              {hoveredIndex === item.id && (
+                <motion.div
+                  layoutId="nav-bg"
+                  className="absolute inset-0 bg-black/5 dark:bg-white/10 rounded-full -z-0"
+                  transition={jellySpring}
                 />
-              </div>
-            </Tooltip>
-          </Link>
-
-          <Link href="/projects">
-            <Tooltip content="Projects">
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <CodeIcon
-                  className={`w-[20px] h-[20px] max-sm:w-[18px] max-sm:h-[18px] text-black dark:text-white ${
-                    pathname == "/projects"
-                      ? "dark:!text-[#FFC83D] !text-[#cc9e2b]"
-                      : ""
-                  }`}
-                />
-              </div>
-            </Tooltip>
-          </Link>
-
-          <Link href="/blogs">
-            <Tooltip content="Blog">
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <Notebook
-                  className={`w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white ${
-                    pathname.startsWith("/blogs")
-                      ? "dark:!text-[#FFC83D] !text-[#cc9e2b]"
-                      : ""
-                  }`}
-                />
-              </div>
-            </Tooltip>
-          </Link>
+              )}
+            </Link>
+          ))}
 
           <Separator
             orientation="vertical"
             size={{ sm: "1", lg: "2", xl: "2" }}
-            className="bg-black dark:bg-gray-400"
+            className="bg-black/10 dark:bg-white/20 h-6 mx-1"
           />
 
-          <Link
-            href="https://drive.google.com/file/d/1qNWGD8k3HSzgL2asnE0HeYQs_UyOGXJS/view?usp=sharing"
-            target="_blank"
-          >
-            <Tooltip content="Resume">
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <FileIcon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
-              </div>
-            </Tooltip>
-          </Link>
-
-          <Link href="https://github.com/Shivgit42" target="_blank">
-            <Tooltip content="Github">
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <GitHubLogoIcon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
-              </div>
-            </Tooltip>
-          </Link>
-
-          <Link
-            href="https://x.com/intent/follow?screen_name=shivamrtwt"
-            target="_blank"
-          >
-            <Tooltip content="X">
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <FaXTwitter className="w-[17px] h-[17px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
-              </div>
-            </Tooltip>
-          </Link>
-
-          <Link
-            href="https://www.linkedin.com/in/shivam-rana-a6427a1a2/"
-            target="_blank"
-          >
-            <Tooltip content="Linkedin">
-              <div className="hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300">
-                <LinkedInLogoIcon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
-              </div>
-            </Tooltip>
-          </Link>
+          {socialItems.map((item) => (
+            <Link key={item.id} href={item.href} target="_blank" className="relative">
+              <Tooltip content={item.label}>
+                <motion.div
+                  className="py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                  onMouseEnter={() => setHoveredIndex(item.id)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  animate={{
+                    paddingLeft: hoveredIndex === item.id ? 22 : 12,
+                    paddingRight: hoveredIndex === item.id ? 22 : 12,
+                    backgroundColor: hoveredIndex === item.id ? "rgba(255, 255, 255, 0.05)" : "transparent"
+                  }}
+                  transition={jellySpring}
+                >
+                  <motion.div
+                    animate={{ scale: hoveredIndex === item.id ? 1.2 : 1 }}
+                    transition={jellySpring}
+                  >
+                    <item.icon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
+                  </motion.div>
+                </motion.div>
+              </Tooltip>
+              {hoveredIndex === item.id && (
+                <motion.div
+                  layoutId="nav-bg"
+                  className="absolute inset-0 bg-black/5 dark:bg-white/10 rounded-full -z-0"
+                  transition={jellySpring}
+                />
+              )}
+            </Link>
+          ))}
 
           <Separator
             orientation="vertical"
             size={{ sm: "1", lg: "2", xl: "2" }}
-            className="bg-black dark:bg-gray-400"
+            className="bg-black/10 dark:bg-white/20 h-6 mx-1"
           />
 
-          <div
-            className="hover:px-3 max-sm:hover:px-2 py-2.5 rounded-full transition-all duration-300 cursor-pointer"
-            onClick={toggleDarkMode}
-          >
-            <div className="flex items-center">
-              <button>
-                {isDarkMode ? (
-                  <MoonIcon className="w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px]" />
-                ) : (
-                  <SunIcon className="w-5 h-5 max-sm:w-[16px] max-sm:h-[16px]" />
-                )}
-              </button>
+          <Tooltip content={isDarkMode ? "Light Mode" : "Dark Mode"}>
+            <div
+              className="relative cursor-pointer group"
+              onClick={toggleDarkMode}
+            >
+              <motion.div
+                className="py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                onMouseEnter={() => setHoveredIndex(7)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                animate={{
+                  paddingLeft: hoveredIndex === 7 ? 22 : 12,
+                  paddingRight: hoveredIndex === 7 ? 22 : 12,
+                  backgroundColor: hoveredIndex === 7 ? "rgba(255, 255, 255, 0.05)" : "transparent"
+                }}
+                transition={jellySpring}
+              >
+                <motion.div
+                  animate={{
+                    rotate: hoveredIndex === 7 ? 15 : 0,
+                    scale: hoveredIndex === 7 ? 1.2 : 1
+                  }}
+                  transition={jellySpring}
+                >
+                  {isDarkMode ? (
+                    <MoonIcon className="w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px] text-white" />
+                  ) : (
+                    <SunIcon className="w-5 h-5 max-sm:w-[16px] max-sm:h-[16px] text-black" />
+                  )}
+                </motion.div>
+              </motion.div>
+              {hoveredIndex === 7 && (
+                <motion.div
+                  layoutId="nav-bg"
+                  className="absolute inset-0 bg-black/5 dark:bg-white/10 rounded-full -z-0"
+                  transition={jellySpring}
+                />
+              )}
             </div>
-          </div>
+          </Tooltip>
         </div>
-      </div>
+      </motion.div>
     </nav>
   );
 };

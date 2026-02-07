@@ -6,7 +6,7 @@ export async function getBlogs() {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs`,
       {
-        next: { revalidate: 60 },
+        next: { revalidate: 0 },
       }
     );
     const data = await response.json();
@@ -21,20 +21,14 @@ export async function getBlogs() {
   }
 }
 
+import BlogTabs from "./BlogTabs";
+
 async function BlogList() {
   const blogs = await getBlogs();
 
   return (
-    <div className="w-full px-64 max-[1025px]:px-0 max-[1285px]:px-0 max-sm:px-2 flex flex-col gap-6 items-center mt-4 pb-8 max-sm:overflow-hidden">
-      {blogs.map((blog: Blog, idx: number) => (
-        <BlogCard
-          key={idx}
-          title={blog.title}
-          createdAt={blog.createdAt}
-          content={blog.content}
-          id={blog.id}
-        />
-      ))}
+    <div className="w-full px-64 max-[1025px]:px-0 max-[1285px]:px-0 max-sm:px-2 mt-4 pb-8 max-sm:overflow-hidden">
+      <BlogTabs initialBlogs={blogs} />
     </div>
   );
 }

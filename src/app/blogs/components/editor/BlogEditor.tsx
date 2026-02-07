@@ -1,10 +1,12 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { EditorContent, useEditor, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
-import { FaCode, FaListUl, FaListOl, FaPencil } from 'react-icons/fa6'
+import Underline from '@tiptap/extension-underline'
+import Link from '@tiptap/extension-link'
+import { FaCode, FaListUl, FaListOl, FaPencil, FaUnderline, FaLink } from 'react-icons/fa6'
 import { GrUndo, GrRedo, GrBlockQuote, GrBold } from "react-icons/gr";
 import { MdOutlineHorizontalRule, MdOutlineFormatItalic } from "react-icons/md";
 import { BiCodeBlock, BiImage } from "react-icons/bi";
@@ -31,6 +33,26 @@ const MenuBar = ({ editor }: MenuBarProps) => {
             setImageUrl('')
             setIsDropDown(false)
         }
+    }
+
+    const setLink = () => {
+        if (!editor) return
+        const previousUrl = editor.getAttributes('link').href
+        const url = window.prompt('URL', previousUrl)
+
+        // cancelled
+        if (url === null) {
+            return
+        }
+
+        // empty
+        if (url === '') {
+            editor.chain().focus().extendMarkRange('link').unsetLink().run()
+            return
+        }
+
+        // update link
+        editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
     }
 
     if (!editor) {
@@ -62,6 +84,18 @@ const MenuBar = ({ editor }: MenuBarProps) => {
                         className={`${editor.isActive('italic') ? 'is-active' : ''} hover:scale-110 duration-200`}
                     >
                         <MdOutlineFormatItalic />
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleUnderline().run()}
+                        className={`${editor.isActive('underline') ? 'is-active' : ''} hover:scale-110 duration-200`}
+                    >
+                        <FaUnderline />
+                    </button>
+                    <button
+                        onClick={setLink}
+                        className={`${editor.isActive('link') ? 'is-active' : ''} hover:scale-110 duration-200`}
+                    >
+                        <FaLink />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -176,6 +210,18 @@ const MenuBar = ({ editor }: MenuBarProps) => {
                         <MdOutlineFormatItalic />
                     </button>
                     <button
+                        onClick={() => editor.chain().focus().toggleUnderline().run()}
+                        className={`${editor.isActive('underline') ? 'is-active' : ''} hover:scale-110 duration-200`}
+                    >
+                        <FaUnderline />
+                    </button>
+                    <button
+                        onClick={setLink}
+                        className={`${editor.isActive('link') ? 'is-active' : ''} hover:scale-110 duration-200`}
+                    >
+                        <FaLink />
+                    </button>
+                    <button
                         onClick={() => editor.chain().focus().toggleStrike().run()}
                         className={`${editor.isActive('strike') ? 'is-active' : ''} hover:scale-110 duration-200`}
                     >
@@ -263,17 +309,30 @@ const MenuBar = ({ editor }: MenuBarProps) => {
     )
 }
 
+
 type BlogEditorProps = {
     setContent: (content: string) => void;
+    initialContent?: string;
 };
 
-export default function BlogEditor({ setContent }: BlogEditorProps) {
+export default function BlogEditor({ setContent, initialContent }: BlogEditorProps) {
     const editor = useEditor({
         extensions: [
             StarterKit,
-            Image
+            Image,
+            Underline,
+            Link.configure({
+                openOnClick: false,
+                autolink: true,
+                defaultProtocol: 'https',
+                HTMLAttributes: {
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    class: 'cursor-pointer'
+                },
+            }),
         ],
-        content: "Start writing here...",
+        content: initialContent || "Start writing here...",
         onUpdate: ({ editor }) => {
             setContent(editor.getHTML())
         },
@@ -285,6 +344,12 @@ export default function BlogEditor({ setContent }: BlogEditorProps) {
         },
         immediatelyRender: false,
     })
+
+    useEffect(() => {
+        if (editor && initialContent && editor.getHTML() !== initialContent) {
+            editor.commands.setContent(initialContent);
+        }
+    }, [editor, initialContent]);
 
     return (
         <>

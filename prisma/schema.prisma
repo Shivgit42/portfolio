@@ -12,8 +12,9 @@ model Blog {
   title           String
   author          String
   createdAt       DateTime @default(now())
-  image_public_id String
+  image_public_id String?
   content         String
+  category        String   @default("tech")
 }
 
 model User {

@@ -130,6 +130,7 @@ const config: Config = {
             },
             a: {
               color: theme("colors.white"),
+              textDecoration: "underline",
             },
             strong: {
               color: theme("colors.gray.100"),

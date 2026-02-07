@@ -5,6 +5,9 @@ import BlogHeader from './components/BlogHeader'
 import { calculateReadingTime } from '@/utils/blogReadingTime'
 import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/authOptions'
+import Link from 'next/link'
 
 interface PageProps {
     params: {
@@ -28,6 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogDetailPage({ params }: PageProps) {
+    const session = await getServerSession(authOptions)
     const blog = await getBlog(params.blogid)
     const readingTime = calculateReadingTime(blog.content)
 
@@ -43,6 +47,17 @@ export default async function BlogDetailPage({ params }: PageProps) {
                     createdAt={blog.createdAt.toString()}
                     readingTime={readingTime}
                 />
+
+                {session && (
+                    <div className="mt-4">
+                        <Link
+                            href={`/blogs/${params.blogid}/edit`}
+                            className="text-sm px-4 py-2 border border-zinc-800 rounded-full hover:bg-white hover:text-black transition-all duration-300"
+                        >
+                            Edit Blog
+                        </Link>
+                    </div>
+                )}
 
                 <div className="mt-8">
                     <BlogPage public_id={blog.image_public_id} />

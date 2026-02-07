@@ -52,4 +52,5 @@ export interface Blog {
   createdAt: string;
   image_public_id: string;
   content: string;
+  category: string;
 }

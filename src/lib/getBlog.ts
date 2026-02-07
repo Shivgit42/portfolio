@@ -13,7 +13,9 @@ export async function getBlog(blogId: string) {
                 content: true,
                 author: true,
                 createdAt: true,
-                image_public_id: true
+                image_public_id: true,
+                // @ts-ignore
+                category: true
             }
         })
 
