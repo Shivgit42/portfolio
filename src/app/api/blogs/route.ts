@@ -12,7 +12,6 @@ export async function GET() {
                 title: true,
                 content: true,
                 createdAt: true,
-                // @ts-ignore
                 category: true
             }
         });

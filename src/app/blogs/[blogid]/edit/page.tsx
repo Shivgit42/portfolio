@@ -19,7 +19,7 @@ const EditPage = async ({ params }: EditPageProps) => {
                     id: blog.id,
                     title: blog.title,
                     content: blog.content,
-                    category: (blog as any).category || 'tech',
+                    category: (blog as { category?: string }).category || 'tech',
                     image_public_id: blog.image_public_id || undefined
                 }}
             />

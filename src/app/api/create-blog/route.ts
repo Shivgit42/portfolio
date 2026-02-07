@@ -72,10 +72,8 @@ export async function POST(req: NextRequest) {
                 title: title.toString(),
                 content: content.toString(),
                 author: session?.user?.name as string,
-                // @ts-ignore
                 image_public_id: image_public_id || "",
                 createdAt: new Date(),
-                // @ts-ignore
                 category: category.toString()
             }
         })

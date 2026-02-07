@@ -1,5 +1,3 @@
-import { Blog } from "@/types/project";
-import BlogCard from "./BlogCard";
 
 export async function getBlogs() {
   try {

@@ -16,7 +16,7 @@ import { usePathname } from "next/navigation";
 import { FaXTwitter } from "react-icons/fa6";
 import { useDarkMode } from "@/hooks/useDarkMode";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -78,8 +78,8 @@ const Navbar = () => {
                   >
                     <item.icon
                       className={`w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] transition-colors duration-300 ${(item.startsWith ? pathname.startsWith(item.href) : pathname === item.href)
-                          ? "text-[#cc9e2b] dark:text-[#FFC83D]"
-                          : "text-black dark:text-white"
+                        ? "text-[#cc9e2b] dark:text-[#FFC83D]"
+                        : "text-black dark:text-white"
                         }`}
                     />
                   </motion.div>

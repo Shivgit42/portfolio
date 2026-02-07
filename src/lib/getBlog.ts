@@ -14,7 +14,6 @@ export async function getBlog(blogId: string) {
                 author: true,
                 createdAt: true,
                 image_public_id: true,
-                // @ts-ignore
                 category: true
             }
         })

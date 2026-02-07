@@ -55,7 +55,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { blogid: st
         const content = formData.get("content");
         const category = formData.get("category");
 
-        const updateData: any = {};
+        const updateData: Record<string, string> = {};
         if (title) updateData.title = title.toString();
         if (content) updateData.content = content.toString();
         if (category) updateData.category = category.toString();
