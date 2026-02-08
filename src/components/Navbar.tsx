@@ -52,7 +52,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full py-4 sm:py-6 flex justify-center fixed top-0 z-50 px-4 pointer-events-none">
+    <nav className="w-full py-4 sm:py-6 flex justify-center fixed top-2 sm:top-0 z-50 px-4 pointer-events-none">
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

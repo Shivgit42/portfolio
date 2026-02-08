@@ -6,7 +6,7 @@ import { bricolage_grotesque, inter } from "@/utils/fonts";
 
 export default function HeroSection() {
   return (
-    <div className="w-full flex justify-center py-5 pt-36 dark:bg-black">
+    <div className="w-full flex justify-center py-5 pt-36 max-sm:pt-28 dark:bg-black">
       <div className="w-2/3 max-sm:w-full flex flex-col items-center">
         <div>
           <Avatar />
