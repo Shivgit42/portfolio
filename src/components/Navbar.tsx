@@ -5,7 +5,6 @@ import { Separator, Tooltip } from "@radix-ui/themes";
 import {
   GitHubLogoIcon,
   SunIcon,
-  MoonIcon,
   FileIcon,
   LinkedInLogoIcon,
   CodeIcon,
