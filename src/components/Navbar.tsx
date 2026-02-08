@@ -47,13 +47,13 @@ const Navbar = () => {
   return (
     <nav className="w-full py-6 flex justify-center fixed top-0 z-50">
       <motion.div
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         className="rounded-full px-2 py-1 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-black/5 dark:border-white/10 flex items-center justify-center dark:shadow-none shadow-lg w-fit max-w-full"
-        layout
+        layout="size"
       >
-        <div className="flex items-center px-1 gap-1 sm:gap-1.5 transition-all relative">
+        <div className="flex items-center px-1 gap-1 sm:gap-1.5 relative">
           {navItems.map((item) => (
             <Link key={item.id} href={item.href} className="relative">
               <Tooltip content={item.label}>
