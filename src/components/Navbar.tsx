@@ -20,7 +20,15 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const pathname = usePathname();
+  const [isMobile, setIsMobile] = React.useState(false);
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const navItems = [
     { href: "/", icon: HomeIcon, label: "Home", id: 0 },
@@ -44,26 +52,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full py-6 flex justify-center fixed top-0 z-50">
+    <nav className="w-full py-4 sm:py-6 flex justify-center fixed top-0 z-50 px-4 pointer-events-none">
       <motion.div
-        initial={false}
+        initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="rounded-full px-2 py-1 bg-white/10 dark:bg-[#161616]/80 backdrop-blur-xl border border-black/5 dark:border-white/10 flex items-center justify-center dark:shadow-none shadow-lg w-fit max-w-full"
+        transition={{ duration: 0.5, ease: "circOut" }}
+        className="rounded-full px-1.5 py-1 bg-white/10 dark:bg-[#161616]/80 backdrop-blur-xl border border-black/5 dark:border-white/10 flex items-center justify-center dark:shadow-none shadow-lg w-fit max-w-full pointer-events-auto"
         layout="size"
       >
-        <div className="flex items-center px-1 gap-1 sm:gap-1.5 relative">
+        <div className="flex items-center px-0.5 gap-0.5 sm:gap-1.5 relative">
           {navItems.map((item) => (
             <Link key={item.id} href={item.href} className="relative">
               <Tooltip content={item.label}>
                 <motion.div
-                  className="px-3 py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                  className="px-2 sm:px-3 py-2 sm:py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
                   onMouseEnter={() => setHoveredIndex(item.id)}
                   onMouseLeave={() => setHoveredIndex(null)}
+                  whileTap={{ scale: 0.9, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                   animate={{
-                    width: hoveredIndex === item.id ? "auto" : "auto",
-                    paddingLeft: hoveredIndex === item.id ? 22 : 12,
-                    paddingRight: hoveredIndex === item.id ? 22 : 12,
+                    paddingLeft: hoveredIndex === item.id ? (isMobile ? 14 : 22) : (isMobile ? 8 : 12),
+                    paddingRight: hoveredIndex === item.id ? (isMobile ? 14 : 22) : (isMobile ? 8 : 12),
                     backgroundColor: hoveredIndex === item.id ? "rgba(255, 255, 255, 0.05)" : "transparent"
                   }}
                   transition={jellySpring}
@@ -76,7 +84,7 @@ const Navbar = () => {
                     transition={jellySpring}
                   >
                     <item.icon
-                      className={`w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] transition-colors duration-300 ${(item.startsWith ? pathname.startsWith(item.href) : pathname === item.href)
+                      className={`w-[17px] h-[17px] sm:w-[19px] sm:h-[19px] transition-colors duration-300 ${(item.startsWith ? pathname.startsWith(item.href) : pathname === item.href)
                         ? "text-[#cc9e2b] dark:text-[#FFC83D]"
                         : "text-black dark:text-white"
                         }`}
@@ -97,19 +105,20 @@ const Navbar = () => {
           <Separator
             orientation="vertical"
             size={{ sm: "1", lg: "2", xl: "2" }}
-            className="bg-black/10 dark:bg-white/20 h-6 mx-1"
+            className="bg-black/10 dark:bg-white/20 h-5 sm:h-6 mx-0.5 sm:mx-1"
           />
 
           {socialItems.map((item) => (
             <Link key={item.id} href={item.href} target="_blank" className="relative">
               <Tooltip content={item.label}>
                 <motion.div
-                  className="px-3 py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                  className="px-2 sm:px-3 py-2 sm:py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
                   onMouseEnter={() => setHoveredIndex(item.id)}
                   onMouseLeave={() => setHoveredIndex(null)}
+                  whileTap={{ scale: 0.9, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                   animate={{
-                    paddingLeft: hoveredIndex === item.id ? 22 : 12,
-                    paddingRight: hoveredIndex === item.id ? 22 : 12,
+                    paddingLeft: hoveredIndex === item.id ? (isMobile ? 14 : 22) : (isMobile ? 8 : 12),
+                    paddingRight: hoveredIndex === item.id ? (isMobile ? 14 : 22) : (isMobile ? 8 : 12),
                     backgroundColor: hoveredIndex === item.id ? "rgba(255, 255, 255, 0.05)" : "transparent"
                   }}
                   transition={jellySpring}
@@ -118,7 +127,7 @@ const Navbar = () => {
                     animate={{ scale: hoveredIndex === item.id ? 1.2 : 1 }}
                     transition={jellySpring}
                   >
-                    <item.icon className="w-[19px] h-[19px] max-sm:w-[16px] max-sm:h-[16px] text-black dark:text-white" />
+                    <item.icon className="w-[17px] h-[17px] sm:w-[19px] sm:h-[19px] text-black dark:text-white" />
                   </motion.div>
                 </motion.div>
               </Tooltip>
@@ -135,7 +144,7 @@ const Navbar = () => {
           <Separator
             orientation="vertical"
             size={{ sm: "1", lg: "2", xl: "2" }}
-            className="bg-black/10 dark:bg-white/20 h-6 mx-1"
+            className="bg-black/10 dark:bg-white/20 h-5 sm:h-6 mx-0.5 sm:mx-1"
           />
 
           <Tooltip content={isDarkMode ? "Light Mode" : "Dark Mode"}>
@@ -144,12 +153,13 @@ const Navbar = () => {
               onClick={toggleDarkMode}
             >
               <motion.div
-                className="px-3 py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                className="px-2 sm:px-3 py-2 sm:py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
                 onMouseEnter={() => setHoveredIndex(7)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                whileTap={{ scale: 0.9, transition: { type: "spring", stiffness: 400, damping: 10 } }}
                 animate={{
-                  paddingLeft: hoveredIndex === 7 ? 22 : 12,
-                  paddingRight: hoveredIndex === 7 ? 22 : 12,
+                  paddingLeft: hoveredIndex === 7 ? (isMobile ? 14 : 22) : (isMobile ? 8 : 12),
+                  paddingRight: hoveredIndex === 7 ? (isMobile ? 14 : 22) : (isMobile ? 8 : 12),
                   backgroundColor: hoveredIndex === 7 ? "rgba(255, 255, 255, 0.05)" : "transparent"
                 }}
                 transition={jellySpring}
@@ -162,9 +172,9 @@ const Navbar = () => {
                   transition={jellySpring}
                 >
                   {isDarkMode ? (
-                    <MoonStar className="w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px] text-white" />
+                    <MoonStar className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] text-white" />
                   ) : (
-                    <SunIcon className="w-5 h-5 max-sm:w-[16px] max-sm:h-[16px] text-black" />
+                    <SunIcon className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-black" />
                   )}
                 </motion.div>
               </motion.div>
