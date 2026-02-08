@@ -11,7 +11,7 @@ import {
   CodeIcon,
   HomeIcon,
 } from "@radix-ui/react-icons";
-import { Notebook } from "lucide-react";
+import { Notebook, MoonStar } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FaXTwitter } from "react-icons/fa6";
 import { useDarkMode } from "@/hooks/useDarkMode";
@@ -47,10 +47,10 @@ const Navbar = () => {
   return (
     <nav className="w-full py-6 flex justify-center fixed top-0 z-50">
       <motion.div
-        initial={{ y: -10, opacity: 0 }}
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="rounded-full px-2 py-1 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-black/5 dark:border-white/10 flex items-center justify-center dark:shadow-none shadow-lg w-fit max-w-full"
+        className="rounded-full px-2 py-1 bg-white/10 dark:bg-[#161616]/80 backdrop-blur-xl border border-black/5 dark:border-white/10 flex items-center justify-center dark:shadow-none shadow-lg w-fit max-w-full"
         layout="size"
       >
         <div className="flex items-center px-1 gap-1 sm:gap-1.5 relative">
@@ -58,7 +58,7 @@ const Navbar = () => {
             <Link key={item.id} href={item.href} className="relative">
               <Tooltip content={item.label}>
                 <motion.div
-                  className="py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                  className="px-3 py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
                   onMouseEnter={() => setHoveredIndex(item.id)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   animate={{
@@ -105,7 +105,7 @@ const Navbar = () => {
             <Link key={item.id} href={item.href} target="_blank" className="relative">
               <Tooltip content={item.label}>
                 <motion.div
-                  className="py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                  className="px-3 py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
                   onMouseEnter={() => setHoveredIndex(item.id)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   animate={{
@@ -145,7 +145,7 @@ const Navbar = () => {
               onClick={toggleDarkMode}
             >
               <motion.div
-                className="py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
+                className="px-3 py-2.5 flex items-center justify-center rounded-full relative z-10 overflow-hidden"
                 onMouseEnter={() => setHoveredIndex(7)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 animate={{
@@ -163,7 +163,7 @@ const Navbar = () => {
                   transition={jellySpring}
                 >
                   {isDarkMode ? (
-                    <MoonIcon className="w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px] text-white" />
+                    <MoonStar className="w-[18px] h-[18px] max-sm:w-[16px] max-sm:h-[16px] text-white" />
                   ) : (
                     <SunIcon className="w-5 h-5 max-sm:w-[16px] max-sm:h-[16px] text-black" />
                   )}
