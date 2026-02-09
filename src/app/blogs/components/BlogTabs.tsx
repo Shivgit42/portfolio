@@ -26,7 +26,7 @@ const BlogTabs = ({ initialBlogs }: BlogTabsProps) => {
 
     return (
         <div className={`w-full flex flex-col items-center ${bricolage_grotesque}`}>
-            <div className="flex gap-10 mb-16 border-b border-zinc-900 w-full max-w-2xl justify-center">
+            <div className="flex gap-10 mb-8 border-b border-zinc-900 w-full max-w-2xl justify-center">
                 <button
                     onClick={() => setActiveTab('learnings')}
                     className={`pb-4 text-xl font-bold transition-all duration-300 relative px-2 ${activeTab === 'learnings' ? 'text-white' : 'text-zinc-500 hover:text-zinc-400'
