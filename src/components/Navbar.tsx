@@ -37,7 +37,7 @@ const Navbar = () => {
   ];
 
   const socialItems = [
-    { href: "https://drive.google.com/file/d/1qNWGD8k3HSzgL2asnE0HeYQs_UyOGXJS/view?usp=sharing", icon: FileIcon, label: "Resume", id: 3 },
+    { href: "https://drive.google.com/file/d/1o-IwWkQQ6lNY25X3Y9Ayt_7_sovbYW9D/view?usp=sharing", icon: FileIcon, label: "Resume", id: 3 },
     { href: "https://github.com/Shivgit42", icon: GitHubLogoIcon, label: "Github", id: 4 },
     { href: "https://x.com/intent/follow?screen_name=shivamrtwt", icon: FaXTwitter, label: "X", id: 5 },
     { href: "https://www.linkedin.com/in/shivam-rana-a6427a1a2/", icon: LinkedInLogoIcon, label: "Linkedin", id: 6 },
