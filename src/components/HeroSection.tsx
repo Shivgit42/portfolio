@@ -17,7 +17,7 @@ export default function HeroSection() {
           >
             Hi, I&apos;m Shivam Rana
           </h1>
-          <h1
+          <p
             className={`mt-2 max-sm:mt-5 max-sm:px-3 !text-base max-sm:!text-sm text-center !font-normal !tracking-normal inter !leading-6 ${inter}`}
           >
             i learn by building, exploring, and breaking things until they work
@@ -25,7 +25,7 @@ export default function HeroSection() {
             peak engineering in cars and space, plus the history behind it all.
             <br />
             If you’re building something real and useful, let’s talk.
-          </h1>
+          </p>
         </div>
         <div className="mt-8 flex gap-4">
           <Link href="https://cal.com/shivamr" target="_blank">
