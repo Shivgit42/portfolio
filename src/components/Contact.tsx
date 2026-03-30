@@ -74,7 +74,7 @@ const Contact = () => {
           </Link>
 
           <Link
-            href="https://x.com/messages/1787450208596508673-1787450208596508673?text="
+            href="https://x.com/i/chat/2038482470983581696-2038482470983581696?text="
             target="_blank"
           >
             <button className="bg-[#1D9BF0] text-white py-2 px-3 rounded-md flex items-center gap-2 text-sm max-sm:text-xs hover:bg-[#2e7bae]">
